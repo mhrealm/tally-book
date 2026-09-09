@@ -174,6 +174,11 @@
     background: transparent !important;
   }
 
+  .ant-picker-cell:hover .ant-picker-cell-inner,
+  .ant-picker-cell:hover .ant-picker-calendar-date {
+    background: transparent !important;
+  }
+
   .ant-picker-cell-today .ant-picker-cell-inner::before,
   .ant-picker-calendar-date-today::before {
     border: 0 !important;
@@ -249,8 +254,8 @@
   color: #111827;
   transition: background 0.2s ease;
 
-  &:hover {
-    background: #f8fafc;
+  &:hover .calendar-day-number {
+    background: #f1f5f9;
   }
 
   &.muted {
