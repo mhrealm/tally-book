@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Button, DatePicker, Empty, Segmented, Spin } from 'antd'
+import { Button, DatePicker, Empty, Spin } from 'antd'
 import { Line, Pie } from '@ant-design/charts'
 import {
-  AppstoreOutlined,
   ExportOutlined,
   LeftOutlined,
   RightOutlined,
@@ -156,16 +155,6 @@ const Chart = ({ transactionCategoryField }) => {
 
   return (
     <div className="report-page">
-      <div className="report-tabs-bar">
-        <Segmented
-          className="report-tabs"
-          onChange={setActiveTab}
-          options={reportTabs}
-          value={activeTab}
-        />
-        <Button icon={<AppstoreOutlined />}>报表库</Button>
-      </div>
-
       <div className="report-toolbar">
         <h2>{activeTab}</h2>
         <div className="report-toolbar-actions">
