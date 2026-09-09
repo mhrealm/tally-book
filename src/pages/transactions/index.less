@@ -143,7 +143,7 @@
     overflow-y: auto;
     border-right: 1px solid var(--color-line);
     background: #fbfcfd;
-    padding: 10px;
+    padding: 16px 10px 10px;
   }
 
   .ledger-month-item {
@@ -243,10 +243,15 @@
   .ledger-row {
     display: grid;
     grid-template-columns:
-      minmax(150px, 1.2fr) 100px 100px 100px 130px minmax(130px, 1fr)
-      116px;
+      minmax(116px, 1.2fr) minmax(82px, 0.7fr) minmax(72px, 0.65fr)
+      minmax(72px, 0.65fr) minmax(96px, 0.85fr) minmax(0, 1fr) 88px;
     align-items: center;
     gap: 10px;
+    width: 100%;
+
+    > * {
+      min-width: 0;
+    }
   }
 
   .ledger-table-head {
@@ -280,15 +285,14 @@
     border-radius: 8px;
     background: #fff;
     color: #374151;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease;
 
     &:nth-child(even) {
       background: #fcfcfd;
     }
 
     &:hover {
-      border-color: var(--color-line);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+      background: #fff8f3;
     }
 
     > span {
@@ -343,6 +347,7 @@
     display: flex;
     gap: 8px;
     justify-content: flex-end;
+    min-width: 0;
 
     button {
       height: 24px;
