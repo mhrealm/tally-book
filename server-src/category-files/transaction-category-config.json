@@ -11,6 +11,7 @@
       "收入"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 1
   },
   {
@@ -25,6 +26,7 @@
       "补贴"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 2
   },
   {
@@ -39,6 +41,7 @@
       "外快"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 3
   },
   {
@@ -53,6 +56,7 @@
       "收益"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 4
   },
   {
@@ -65,6 +69,7 @@
       "礼金"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 5
   },
   {
@@ -78,6 +83,7 @@
       "退费"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 6
   },
   {
@@ -109,6 +115,7 @@
       "咖啡"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 101
   },
   {
@@ -127,6 +134,7 @@
       "零食"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 102
   },
   {
@@ -149,6 +157,7 @@
       "飞机"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 103
   },
   {
@@ -165,6 +174,7 @@
       "装修"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 104
   },
   {
@@ -179,6 +189,7 @@
       "煤气"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 105
   },
   {
@@ -194,6 +205,7 @@
       "通讯"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 106
   },
   {
@@ -210,6 +222,7 @@
       "保健"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 107
   },
   {
@@ -226,6 +239,7 @@
       "学习"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 108
   },
   {
@@ -242,6 +256,7 @@
       "酒吧"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 109
   },
   {
@@ -258,6 +273,7 @@
       "签证"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 110
   },
   {
@@ -273,6 +289,7 @@
       "家居"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 111
   },
   {
@@ -290,6 +307,7 @@
       "美甲"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 112
   },
   {
@@ -306,6 +324,7 @@
       "充电器"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 113
   },
   {
@@ -321,6 +340,7 @@
       "跑步"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 114
   },
   {
@@ -336,6 +356,7 @@
       "礼物"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 115
   },
   {
@@ -351,6 +372,7 @@
       "儿童"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 116
   },
   {
@@ -365,6 +387,7 @@
       "社保"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 117
   },
   {
@@ -381,6 +404,7 @@
       "过路费"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 118
   },
   {
@@ -396,6 +420,7 @@
       "视频会员"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 119
   },
   {
@@ -410,6 +435,7 @@
       "软件"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 120
   },
   {
@@ -424,6 +450,7 @@
       "修理"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 121
   },
   {
@@ -438,6 +465,7 @@
       "滞纳金"
     ],
     "enabled": true,
+    "isDefault": false,
     "sort": 122
   },
   {
@@ -448,5 +476,16 @@
     "enabled": true,
     "isDefault": true,
     "sort": 999
+  },
+  {
+    "value": "副业",
+    "label": "副业",
+    "type": "收入",
+    "keywords": [
+      "副业"
+    ],
+    "enabled": true,
+    "isDefault": false,
+    "sort": 1000
   }
 ]
