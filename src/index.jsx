@@ -412,7 +412,7 @@ const App = () => {
   const handleTransactionCategoriesChange = async (nextCategories) => {
     const normalizedCategories =
       normalizeAllTransactionCategories(nextCategories)
-    const { code, msg } = await updateTransactionCategories(
+    const { code, data, msg } = await updateTransactionCategories(
       normalizedCategories
     )
 
@@ -420,7 +420,12 @@ const App = () => {
       throw new Error(msg || '交易分类保存失败')
     }
 
-    return refreshTransactionCategories()
+    const refreshedCategories = normalizeAllTransactionCategories(data)
+    setTransactionCategories(refreshedCategories)
+    setTransactionCategoryField(
+      normalizeTransactionCategoryField(refreshedCategories)
+    )
+    return refreshedCategories
   }
 
   const openRecordDrawer = React.useCallback(() => {

@@ -27,7 +27,6 @@ const CategoryConfig = ({
 }) => {
   const [form] = Form.useForm()
   const [activeType, setActiveType] = React.useState(CATEGORY_TYPES[0])
-  const [showHidden, setShowHidden] = React.useState(false)
   const [editingValue, setEditingValue] = React.useState(null)
   const [modalOpen, setModalOpen] = React.useState(false)
   const [saving, setSaving] = React.useState(false)
@@ -40,10 +39,9 @@ const CategoryConfig = ({
   const visibleCategories = React.useMemo(
     () =>
       normalizedCategories.filter(
-        (item) =>
-          item.type === activeType && (showHidden || item.enabled !== false)
+        (item) => item.type === activeType
       ),
-    [activeType, normalizedCategories, showHidden]
+    [activeType, normalizedCategories]
   )
   const editingCategory = React.useMemo(
     () => normalizedCategories.find((item) => item.value === editingValue),
@@ -209,9 +207,7 @@ const CategoryConfig = ({
 
         <CategoryFilter
           activeType={activeType}
-          onShowHiddenChange={setShowHidden}
           onTypeChange={setActiveType}
-          showHidden={showHidden}
         />
 
         {isMobileList ? (

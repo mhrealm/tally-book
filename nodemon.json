@@ -1,0 +1,11 @@
+{
+  "watch": ["server-src"],
+  "ignore": [
+    "server-src/category-files",
+    "server-src/menu-files",
+    "server-src/month-files",
+    "server-src/role-files",
+    "server-src/user-files"
+  ],
+  "ext": "js,json"
+}

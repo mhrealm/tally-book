@@ -11,7 +11,7 @@
       "收入"
     ],
     "enabled": true,
-    "isDefault": false,
+    "isDefault": true,
     "sort": 1
   },
   {
@@ -92,7 +92,7 @@
     "type": "收入",
     "keywords": [],
     "enabled": true,
-    "isDefault": true,
+    "isDefault": false,
     "sort": 7
   },
   {
@@ -404,7 +404,7 @@
       "过路费"
     ],
     "enabled": true,
-    "isDefault": false,
+    "isDefault": true,
     "sort": 118
   },
   {
@@ -474,7 +474,7 @@
     "type": "支出",
     "keywords": [],
     "enabled": true,
-    "isDefault": true,
+    "isDefault": false,
     "sort": 999
   },
   {

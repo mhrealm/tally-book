@@ -1,11 +1,9 @@
-import { Checkbox, Radio } from 'antd'
+import { Radio } from 'antd'
 import { CATEGORY_TYPES } from './category-utils'
 
 const CategoryFilter = ({
   activeType,
-  onShowHiddenChange,
   onTypeChange,
-  showHidden,
 }) => {
   return (
     <div className="category-config-filter">
@@ -19,12 +17,6 @@ const CategoryFilter = ({
         }))}
         value={activeType}
       />
-      <Checkbox
-        checked={showHidden}
-        onChange={(event) => onShowHiddenChange(event.target.checked)}
-      >
-        显示已隐藏的分类
-      </Checkbox>
     </div>
   )
 }
