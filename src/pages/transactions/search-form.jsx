@@ -18,7 +18,6 @@ const TransactionSearchForm = ({
       form={form}
       layout="inline"
       onFinish={onSearch}
-      style={{ marginBottom: 16 }}
     >
       <Form.Item label="日期范围" name="dateRange">
         <RangePicker format={dateFormat} />

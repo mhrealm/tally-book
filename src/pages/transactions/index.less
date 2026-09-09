@@ -20,6 +20,31 @@
       margin-bottom: 16px;
     }
 
+    .ant-form-item:not(:last-child) .ant-form-item-row {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 64px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ant-form-item-label {
+      padding: 0;
+      text-align: right;
+    }
+
+    .ant-form-item-label > label {
+      justify-content: flex-end;
+      width: 100%;
+      height: auto;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    .ant-form-item-control {
+      min-width: 0;
+    }
+
     .ant-form-item:last-child {
       grid-column: 1 / -1;
     }
@@ -64,28 +89,12 @@
     padding: 16px;
   }
 
-  .ledger-month-filter {
-    display: flex;
-    height: 44px;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    padding: 0 14px;
-    border: 1px solid #e6e9ef;
-    border-radius: 8px;
-    color: #8a8f99;
-
-    strong {
-      color: #374151;
-    }
-  }
-
   .ledger-month-item {
     display: grid;
     width: 100%;
-    gap: 8px;
-    margin-bottom: 10px;
-    padding: 14px;
+    gap: 4px;
+    margin-bottom: 6px;
+    padding: 8px 10px;
     border: 0;
     border-radius: 8px;
     background: #fff;
@@ -102,8 +111,9 @@
 
     span {
       color: #111827;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 750;
+      line-height: 1.1;
     }
 
     em,
@@ -111,6 +121,7 @@
       color: #8a8f99;
       font-size: 12px;
       font-style: normal;
+      line-height: 1.2;
     }
   }
 
@@ -455,7 +466,6 @@
 
     .search-form-wrap {
       grid-template-columns: 1fr;
-      margin-bottom: 12px !important;
       padding: 12px 12px 0;
 
       .ant-form-item {

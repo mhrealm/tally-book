@@ -17,10 +17,6 @@ const TransactionLedger = ({
   return (
     <section className="transaction-ledger page-panel">
       <aside className="ledger-months">
-        <div className="ledger-month-filter">
-          <strong>汇总：</strong>
-          <span>月</span>
-        </div>
         {monthGroups.length ? (
           monthGroups.map((group) => (
             <button

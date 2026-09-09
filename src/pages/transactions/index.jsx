@@ -15,6 +15,7 @@ import {
 } from "../../api/transactions";
 import {
   DATE_FORMAT,
+  filterTransactionsByMonth,
   formatAmount,
   groupTransactionsByMonth,
   summarizeTransactions,
@@ -47,6 +48,7 @@ const Transactions = ({ transactionCategoryField }) => {
   const transactionType = Form.useWatch("type", form);
   const searchTransactionType = Form.useWatch("type", searchForm);
   const [searchParams, setSearchParams] = useState({});
+  const [selectedMonth, setSelectedMonth] = useState("");
   const {
     activeCategoryOptions: formCategoryOptions,
     getCategoryLabel,
@@ -78,15 +80,23 @@ const Transactions = ({ transactionCategoryField }) => {
     () => groupTransactionsByMonth(transactions),
     [transactions]
   );
-  const activeMonth =
-    searchParams.month || monthGroups[0]?.monthKey || dayjs().format("YYYY-MM");
   const hasSearchParams = Object.keys(searchParams).length > 0;
+  const monthKeys = useMemo(
+    () => monthGroups.map((group) => group.monthKey),
+    [monthGroups]
+  );
+  const latestMonth = monthGroups[0]?.monthKey || dayjs().format("YYYY-MM");
+  const isSelectedMonthAvailable =
+    selectedMonth && monthKeys.includes(selectedMonth);
+  const activeMonth =
+    isSelectedMonthAvailable ? selectedMonth : hasSearchParams ? "" : latestMonth;
+  const displayMonth = activeMonth || "";
   const desktopTransactions = useMemo(
     () =>
-      hasSearchParams
-        ? sortedTransactions
-        : sortedTransactions.filter((item) => item.date?.startsWith(activeMonth)),
-    [activeMonth, hasSearchParams, sortedTransactions]
+      displayMonth
+        ? filterTransactionsByMonth(sortedTransactions, displayMonth)
+        : sortedTransactions,
+    [displayMonth, sortedTransactions]
   );
   const viewSummary = useMemo(
     () => summarizeTransactions(desktopTransactions),
@@ -179,12 +189,14 @@ const Transactions = ({ transactionCategoryField }) => {
         delete params[key];
       }
     });
+    setSelectedMonth("");
     setSearchParams(params);
   };
 
   // 重置查询
   const onReset = () => {
     searchForm.resetFields();
+    setSelectedMonth("");
     setSearchParams({}); // 重置查询参数，触发 useEffect 重新获取数据
   };
 
@@ -347,10 +359,7 @@ const Transactions = ({ transactionCategoryField }) => {
           monthGroups={monthGroups}
           onDelete={handleDelete}
           onEdit={openEditor}
-          onMonthSelect={(monthKey) => {
-            searchForm.resetFields();
-            setSearchParams({ month: monthKey });
-          }}
+          onMonthSelect={setSelectedMonth}
           summary={viewSummary}
           transactions={desktopTransactions}
         />
