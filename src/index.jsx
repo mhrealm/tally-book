@@ -589,7 +589,6 @@ const App = () => {
           <div className="book-cover">考</div>
           <div className="book-title">
             <strong>考拉记账</strong>
-            <Tag className="book-tag">家庭账本</Tag>
           </div>
         </div>
         <div className="admin-actions">

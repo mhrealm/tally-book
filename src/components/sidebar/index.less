@@ -16,14 +16,19 @@
     width: 72px;
 
     .sidebar-create-wrap {
-      padding: 22px 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 0 12px;
     }
 
     .sidebar-create {
-      width: 52px;
+      width: 36px;
+      height: 36px;
+      min-height: 36px;
       min-width: 0;
       padding: 0;
-      border-radius: 14px;
+      border-radius: 10px;
 
       span {
         display: none;
@@ -57,23 +62,25 @@
 }
 
 .sidebar-create-wrap {
-  padding: 30px 26px 22px;
+  display: flex;
+  justify-content: center;
+  padding: 18px 18px 14px;
 }
 
 .sidebar-create {
   display: inline-flex;
-  width: 100%;
-  min-height: 60px;
+  width: 148px;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   border: 1px solid var(--theme-primary);
-  border-radius: 16px;
+  border-radius: 12px;
   background: #fff;
   color: var(--theme-primary);
   cursor: pointer;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 750;
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 
@@ -199,7 +206,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 828px) {
   .nav-bar {
     position: fixed;
     top: auto;
