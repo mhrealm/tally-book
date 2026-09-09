@@ -15,7 +15,7 @@ const TransactionLedger = ({
   transactions,
 }) => {
   return (
-    <section className="transaction-ledger page-panel">
+    <section className="transaction-ledger">
       <aside className="ledger-months">
         {monthGroups.length ? (
           monthGroups.map((group) => (
@@ -30,7 +30,10 @@ const TransactionLedger = ({
               onClick={() => onMonthSelect(group.monthKey)}
               type="button"
             >
-              <span>{Number(group.monthKey.slice(5))}月</span>
+              <span>
+                {group.monthKey.slice(0, 4)}年
+                {Number(group.monthKey.slice(5))}月
+              </span>
               <em>结余 {formatAmount(group.balance)}</em>
               <small>
                 收入 {formatAmount(group.income)}　支出{' '}
@@ -45,13 +48,15 @@ const TransactionLedger = ({
 
       <section className="ledger-records">
         <div className="ledger-header">
-          <div>
+          <div className="ledger-header-main">
             <strong>流水列表</strong>
             <span>结余 {formatAmount(summary.balance)}</span>
             <span className="income">收入 {formatAmount(summary.income)}</span>
             <span className="expense">支出 {formatAmount(summary.expense)}</span>
           </div>
-          <span>{transactions.length} 笔</span>
+          <div className="ledger-header-actions">
+            <span>{transactions.length} 笔</span>
+          </div>
         </div>
 
         <div className="ledger-table-head">

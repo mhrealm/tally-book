@@ -12,8 +12,10 @@ const TransactionMobileList = ({
   return (
     <section className="transaction-mobile-list" aria-label="交易滚动列表">
       <div className="mobile-list-summary">
-        <span>共 {transactions.length} 条</span>
-        <strong>￥{formatAmount(totalAmount)}</strong>
+        <div>
+          <span>共 {transactions.length} 条</span>
+          <strong>￥{formatAmount(totalAmount)}</strong>
+        </div>
       </div>
 
       {transactions.length ? (

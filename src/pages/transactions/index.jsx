@@ -193,13 +193,6 @@ const Transactions = ({ transactionCategoryField }) => {
     setSearchParams(params);
   };
 
-  // 重置查询
-  const onReset = () => {
-    searchForm.resetFields();
-    setSelectedMonth("");
-    setSearchParams({}); // 重置查询参数，触发 useEffect 重新获取数据
-  };
-
   // 保存
   const layout = {
     labelCol: { span: 4 },
@@ -329,41 +322,44 @@ const Transactions = ({ transactionCategoryField }) => {
 
   return (
     <div className="transaction">
-      <TransactionSearchForm
-        categoryOptions={searchCategoryOptions}
-        dateFormat={dateFormat}
-        form={searchForm}
-        onExport={handleExport}
-        onReset={onReset}
-        onSearch={onSearch}
-        typeOptions={transactionTypeField.options}
-      />
+      <section className="transaction-panel page-panel">
+        <div className="transaction-panel-head">
+          <TransactionSearchForm
+            categoryOptions={searchCategoryOptions}
+            dateFormat={dateFormat}
+            form={searchForm}
+            onExport={handleExport}
+            onSearch={onSearch}
+            typeOptions={transactionTypeField.options}
+          />
+        </div>
 
-      {isMobileList ? (
-        <TransactionMobileList
-          formatAmount={formatAmount}
-          getCategoryLabel={getCategoryLabel}
-          getTypeLabel={getTypeLabel}
-          onDelete={handleDelete}
-          onEdit={openEditor}
-          totalAmount={totalAmount}
-          transactions={sortedTransactions}
-        />
-      ) : (
-        <TransactionLedger
-          activeMonth={activeMonth}
-          formatAmount={formatAmount}
-          getCategoryLabel={getCategoryLabel}
-          getTypeLabel={getTypeLabel}
-          groupedTransactions={groupedTransactions}
-          monthGroups={monthGroups}
-          onDelete={handleDelete}
-          onEdit={openEditor}
-          onMonthSelect={setSelectedMonth}
-          summary={viewSummary}
-          transactions={desktopTransactions}
-        />
-      )}
+        {isMobileList ? (
+          <TransactionMobileList
+            formatAmount={formatAmount}
+            getCategoryLabel={getCategoryLabel}
+            getTypeLabel={getTypeLabel}
+            onDelete={handleDelete}
+            onEdit={openEditor}
+            totalAmount={totalAmount}
+            transactions={sortedTransactions}
+          />
+        ) : (
+          <TransactionLedger
+            activeMonth={activeMonth}
+            formatAmount={formatAmount}
+            getCategoryLabel={getCategoryLabel}
+            getTypeLabel={getTypeLabel}
+            groupedTransactions={groupedTransactions}
+            monthGroups={monthGroups}
+            onDelete={handleDelete}
+            onEdit={openEditor}
+            onMonthSelect={setSelectedMonth}
+            summary={viewSummary}
+            transactions={desktopTransactions}
+          />
+        )}
+      </section>
 
       <TransactionEditorModal
         categoryOptions={formCategoryOptions}
