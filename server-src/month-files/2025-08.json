@@ -1486,15 +1486,6 @@
       "classification": "其他"
     },
     {
-      "describe": "天榨菜",
-      "amount": 9.75,
-      "date": "2025-08-22",
-      "type": "支出",
-      "id": "1765963143646020",
-      "createdAt": 1765963143646,
-      "classification": "其他"
-    },
-    {
       "describe": "猕猴桃",
       "amount": 7.8,
       "date": "2025-08-22",
@@ -2123,6 +2114,19 @@
       "id": "1765963154467036",
       "createdAt": 1765963154467,
       "classification": "其他"
+    },
+    {
+      "amount": 9.75,
+      "describe": "榨菜",
+      "account": "cash",
+      "member": "admin",
+      "merchant": "",
+      "project": "",
+      "type": "支出",
+      "date": "2025-08-22",
+      "id": "179058355543900017",
+      "classification": "车辆",
+      "createdAt": 1790583555440
     }
   ]
 }
