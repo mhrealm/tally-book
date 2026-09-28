@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { Empty } from 'antd'
+import CategoryIcon from '../../components/category-icon'
 
 const TransactionLedger = ({
   activeMonth,
@@ -51,7 +52,8 @@ const TransactionLedger = ({
           <span>金额</span>
           <span>账户</span>
           <span>成员</span>
-          <span>时间</span>
+          <span>账单日期</span>
+          <span>最后更新时间</span>
           <span>备注</span>
           <span>操作</span>
         </div>
@@ -71,7 +73,10 @@ const TransactionLedger = ({
                   return (
                     <article className="ledger-row" key={item.id}>
                       <div className="ledger-category">
-                        <span>{categoryLabel.slice(0, 1)}</span>
+                        <CategoryIcon
+                          label={categoryLabel}
+                          value={item.classification}
+                        />
                         <strong>{categoryLabel}</strong>
                       </div>
                       <b className={isIncome ? 'income' : 'expense'}>
@@ -80,6 +85,11 @@ const TransactionLedger = ({
                       <span>{isIncome ? '收入账户' : '现金'}</span>
                       <span>管理员</span>
                       <span>{item.date}</span>
+                      <span>
+                        {dayjs(item.updatedAt || item.createdAt).format(
+                          'YYYY-MM-DD'
+                        )}
+                      </span>
                       <span>{item.describe || '-'}</span>
                       <div className="ledger-actions">
                         <button type="button" onClick={() => onEdit(item)}>

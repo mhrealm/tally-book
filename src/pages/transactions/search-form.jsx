@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { DatePicker, Form, Input, Select } from 'antd'
+import { renderCategoryOption } from '../../components/category-icon'
 
 const { RangePicker } = DatePicker
 const SEARCH_DELAY = 300
@@ -76,6 +77,8 @@ const TransactionSearchForm = ({
         <Select
           allowClear
           disabled={!categoryOptions.length}
+          labelRender={renderCategoryOption}
+          optionRender={(option) => renderCategoryOption(option.data)}
           options={categoryOptions}
           placeholder="请选择分类"
           style={{ width: 140 }}

@@ -16,6 +16,7 @@ import {
   getPeriodSummaries,
   summarizeTransactions,
 } from '../../utils/book-stats'
+import CategoryIcon from '../../components/category-icon'
 import './index.less'
 
 const periodCards = [
@@ -210,7 +211,11 @@ const Home = ({ transactionCategoryField, users = [] }) => {
                 expenseRanking.map((item, index) => (
                   <div className="ranking-row" key={item.key}>
                     <span className="ranking-index">{index + 1}</span>
-                    <span className="ranking-icon">{item.label.slice(0, 1)}</span>
+                    <CategoryIcon
+                      className="ranking-icon"
+                      label={item.label}
+                      value={item.key}
+                    />
                     <div className="ranking-main">
                       <div>
                         <strong>{item.label}</strong>

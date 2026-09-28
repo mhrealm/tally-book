@@ -21,6 +21,7 @@ import {
 import dayjs from 'dayjs'
 import { getAllTransactions } from '../../api/transactions'
 import { transactionTypeField } from '../../constants/fields'
+import CategoryIcon from '../../components/category-icon'
 import './index.less'
 
 const { Text } = Typography
@@ -362,14 +363,14 @@ const BillCalendar = ({ transactionCategoryField }) => {
                   return (
                     <List.Item className="bill-detail-item">
                       <div className="detail-item-main">
-                        <span
+                        <CategoryIcon
                           className={[
                             'detail-category-icon',
                             income ? 'income' : 'expense',
                           ].join(' ')}
-                        >
-                          {categoryLabel.slice(0, 1)}
-                        </span>
+                          label={categoryLabel}
+                          value={item.classification}
+                        />
                         <div>
                           <Text strong>{item.describe || '未填写描述'}</Text>
                           <span>

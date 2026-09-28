@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import { DatePicker, Form, Input, InputNumber, Modal, Radio } from 'antd'
 import { recordMode, transactionTypeField } from '../../constants/fields'
+import { renderCategoryOption } from '../../components/category-icon'
 
 const TransactionEditorModal = ({
   categoryOptions,
@@ -121,7 +122,10 @@ const TransactionEditorModal = ({
           >
             <Radio.Group
               disabled={!categoryOptions.length}
-              options={categoryOptions}
+              options={categoryOptions.map((option) => ({
+                ...option,
+                label: renderCategoryOption(option),
+              }))}
               style={{ width: '100%', display: 'flex', flexWrap: 'wrap' }}
             />
           </Form.Item>

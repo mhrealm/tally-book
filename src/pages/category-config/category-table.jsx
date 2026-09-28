@@ -1,30 +1,17 @@
 import React from 'react'
 import { Button, Popconfirm, Space, Switch, Table, Tag, Tooltip } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
-import { getCategoryIconUrl } from '../../common/category-icons'
+import CategoryIcon from '../../components/category-icon'
 
-const renderCategoryName = (value, record) => {
-  const iconUrl = getCategoryIconUrl(record.value)
-
-  return (
-    <div className="category-name-cell">
-      {iconUrl ? (
-        <span
-          className="category-icon is-image"
-          style={{ backgroundImage: `url(${iconUrl})` }}
-        />
-      ) : (
-        <span className="category-icon">
-          {String(value || record.value).slice(0, 1)}
-        </span>
-      )}
-      <div>
-        <strong>{value}</strong>
-        <span>{record.value}</span>
-      </div>
+const renderCategoryName = (value, record) => (
+  <div className="category-name-cell">
+    <CategoryIcon className="category-icon" label={value} value={record.value} />
+    <div>
+      <strong>{value}</strong>
+      <span>{record.value}</span>
     </div>
-  )
-}
+  </div>
+)
 
 const KeywordsCell = ({ keywords = [] }) => {
   const listRef = React.useRef(null)

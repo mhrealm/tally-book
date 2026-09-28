@@ -15,6 +15,7 @@ import {
   getIncomeStats,
   summarizeTransactions,
 } from '../../utils/book-stats'
+import CategoryIcon from '../../components/category-icon'
 import './index.less'
 
 const reportTabs = ['基础统计', '分类', '账户', '成员', '项目', '商家']
@@ -227,6 +228,11 @@ const Chart = ({ transactionCategoryField }) => {
                   expenseStats.slice(0, 6).map((item, index) => (
                     <div className="report-rank-row" key={item.key}>
                       <span>{index + 1}</span>
+                      <CategoryIcon
+                        className="report-rank-icon"
+                        label={item.label}
+                        value={item.key}
+                      />
                       <strong>{item.label}</strong>
                       <em>{(item.percent * 100).toFixed(2)}%</em>
                       <b>{formatAmount(item.amount)}</b>
@@ -261,9 +267,9 @@ const Chart = ({ transactionCategoryField }) => {
               </div>
               <div className="report-source-list">
                 {incomeStats.length ? (
-                  incomeStats.slice(0, 5).map((item, index) => (
+                  incomeStats.slice(0, 5).map((item) => (
                     <div className="report-source-row" key={item.key}>
-                      <span>{index + 1}</span>
+                      <CategoryIcon label={item.label} value={item.key} />
                       <strong>{item.label}</strong>
                       <b>{formatAmount(item.amount)}</b>
                     </div>

@@ -1,5 +1,6 @@
 import { DatePicker, Form, Input, InputNumber, Select } from 'antd'
 import { DATE_FORMAT } from '../../utils/book-stats'
+import { renderCategoryOption } from '../category-icon'
 import {
   ACCOUNT_OPTIONS,
   BATCH_MODE_OPTIONS,
@@ -88,6 +89,8 @@ const RecordForm = ({
           >
             <Select
               disabled={!categoryOptions.length}
+              labelRender={renderCategoryOption}
+              optionRender={(option) => renderCategoryOption(option.data)}
               options={categoryOptions}
               placeholder="请选择分类"
             />
