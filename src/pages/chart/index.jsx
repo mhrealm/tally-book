@@ -43,6 +43,34 @@ const Chart = ({ transactionCategoryField }) => {
   const [selectedMonth, setSelectedMonth] = useState(defaultMonth)
   const [transactionData, setTransactionData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [yearExpense, setYearExpense] = useState(0)
+  const selectedYear = selectedMonth.slice(0, 4)
+
+  useEffect(() => {
+    let mounted = true
+
+    getAllTransactions({
+      startDate: `${selectedYear}-01-01`,
+      endDate: `${selectedYear}-12-31`,
+    })
+      .then((res) => {
+        if (mounted) {
+          setYearExpense(
+            summarizeTransactions(Array.isArray(res.data) ? res.data : [])
+              .expense
+          )
+        }
+      })
+      .catch(() => {
+        if (mounted) {
+          setYearExpense(0)
+        }
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [selectedYear])
 
   useEffect(() => {
     let mounted = true
@@ -181,7 +209,7 @@ const Chart = ({ transactionCategoryField }) => {
                 <p>
                   总收入 {formatAmount(summary.income)}
                   <i />
-                  总支出 {formatAmount(summary.expense)}
+                  总支出 {formatAmount(yearExpense)}
                 </p>
               </div>
               <footer>

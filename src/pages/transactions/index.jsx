@@ -21,7 +21,6 @@ import {
   summarizeTransactions,
 } from "../../utils/book-stats";
 import { TRANSACTION_UPDATED_EVENT } from "../../constants/events";
-import useMediaQuery from "../../hooks/use-media-query";
 import useTransactionCategories from "../../hooks/use-transaction-categories";
 import {
   createBatchTransactions,
@@ -30,15 +29,12 @@ import {
 import { downloadTransactions } from "../../utils/transaction-export";
 import TransactionEditorModal from "./editor-modal";
 import TransactionLedger from "./ledger-list";
-import TransactionMobileList from "./mobile-list";
 import TransactionSearchForm from "./search-form";
 
 const dateFormat = DATE_FORMAT;
-const MOBILE_LIST_QUERY = "(max-width: 828px)";
 
 const Transactions = ({ transactionCategoryField }) => {
   const [transactions, setTransactions] = useState([]);
-  const isMobileList = useMediaQuery(MOBILE_LIST_QUERY);
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
@@ -64,11 +60,6 @@ const Transactions = ({ transactionCategoryField }) => {
     transactionTypeField.options.find((item) => item.value === value)?.label ||
     value ||
     "未知";
-  const totalAmount = useMemo(
-    () =>
-      transactions.reduce((sum, item) => sum + (Number(item.amount) || 0), 0),
-    [transactions]
-  );
   const sortedTransactions = useMemo(
     () =>
       [...transactions].sort(
@@ -337,31 +328,19 @@ const Transactions = ({ transactionCategoryField }) => {
           />
         </div>
 
-        {isMobileList ? (
-          <TransactionMobileList
-            formatAmount={formatAmount}
-            getCategoryLabel={getCategoryLabel}
-            getTypeLabel={getTypeLabel}
-            onDelete={handleDelete}
-            onEdit={openEditor}
-            totalAmount={totalAmount}
-            transactions={sortedTransactions}
-          />
-        ) : (
-          <TransactionLedger
-            activeMonth={activeMonth}
-            formatAmount={formatAmount}
-            getCategoryLabel={getCategoryLabel}
-            getTypeLabel={getTypeLabel}
-            groupedTransactions={groupedTransactions}
-            monthGroups={monthGroups}
-            onDelete={handleDelete}
-            onEdit={openEditor}
-            onMonthSelect={setSelectedMonth}
-            summary={viewSummary}
-            transactions={desktopTransactions}
-          />
-        )}
+        <TransactionLedger
+          activeMonth={activeMonth}
+          formatAmount={formatAmount}
+          getCategoryLabel={getCategoryLabel}
+          getTypeLabel={getTypeLabel}
+          groupedTransactions={groupedTransactions}
+          monthGroups={monthGroups}
+          onDelete={handleDelete}
+          onEdit={openEditor}
+          onMonthSelect={setSelectedMonth}
+          summary={viewSummary}
+          transactions={desktopTransactions}
+        />
       </section>
 
       <TransactionEditorModal

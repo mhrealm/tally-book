@@ -2,11 +2,9 @@ import React from 'react'
 import { Form, message } from 'antd'
 import { resetTransactionCategories } from '../../api/transaction-categories'
 import { normalizeAllTransactionCategories } from '../../config/transaction-categories'
-import useMediaQuery from '../../hooks/use-media-query'
 import CategoryEditorModal from './category-editor-modal'
 import CategoryFilter from './category-filter'
 import CategoryHeader from './category-header'
-import CategoryMobileList from './category-mobile-list'
 import CategoryTable from './category-table'
 import {
   CATEGORY_TYPES,
@@ -18,8 +16,6 @@ import {
 } from './category-utils'
 import './index.less'
 
-const MOBILE_LIST_QUERY = '(max-width: 828px)'
-
 const CategoryConfig = ({
   categories = [],
   onCategoriesChange,
@@ -30,7 +26,6 @@ const CategoryConfig = ({
   const [editingValue, setEditingValue] = React.useState(null)
   const [modalOpen, setModalOpen] = React.useState(false)
   const [saving, setSaving] = React.useState(false)
-  const isMobileList = useMediaQuery(MOBILE_LIST_QUERY)
 
   const normalizedCategories = React.useMemo(
     () => normalizeAllTransactionCategories(categories),
@@ -210,26 +205,14 @@ const CategoryConfig = ({
           onTypeChange={setActiveType}
         />
 
-        {isMobileList ? (
-          <CategoryMobileList
-            activeType={activeType}
-            categories={visibleCategories}
-            onDefaultChange={handleDefaultChange}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-            onStatusChange={handleStatusChange}
-            saving={saving}
-          />
-        ) : (
-          <CategoryTable
-            categories={visibleCategories}
-            onDefaultChange={handleDefaultChange}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-            onStatusChange={handleStatusChange}
-            saving={saving}
-          />
-        )}
+        <CategoryTable
+          categories={visibleCategories}
+          onDefaultChange={handleDefaultChange}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+          onStatusChange={handleStatusChange}
+          saving={saving}
+        />
       </section>
 
       <CategoryEditorModal

@@ -16,7 +16,6 @@ import {
   DownOutlined,
   CustomerServiceOutlined,
   LogoutOutlined,
-  UserOutlined,
 } from '@ant-design/icons'
 import zhCN from 'antd/locale/zh_CN'
 import dayjs from 'dayjs'
@@ -28,9 +27,7 @@ dayjs.locale('zh-cn')
 import Home from './pages/home'
 import Login from './pages/login'
 import CategoryConfig from './pages/category-config'
-import Discover from './pages/discover'
 import MenuConfig from './pages/menu-config'
-import Profile from './pages/profile'
 import RoleConfig from './pages/role-config'
 import UserConfig from './pages/user-config'
 import TransactionImport from './pages/transaction-import'
@@ -82,10 +79,9 @@ const AVATAR_COLORS = [
   '#8b5cf6',
   '#64748b',
 ]
-const APP_ONLY_PATHS = ['/discover', '/profile']
-const THEME_COLOR = '#ff9a3d'
+const THEME_COLOR = '#eba05e'
 const APP_FONT_FAMILY =
-  'PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans SC, sans-serif'
+  '-apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Segoe UI, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif'
 
 const getMenuAccessPath = (path) =>
   path.startsWith('/transactions/') ? '/transactions' : path
@@ -155,14 +151,6 @@ const pageMeta = {
   '/bill-calendar': {
     title: '账单日历',
     description: '按日查看账单明细',
-  },
-  '/discover': {
-    title: '发现',
-    description: '快捷入口',
-  },
-  '/profile': {
-    title: '我的',
-    description: '个人中心',
   },
   '/menu-config': {
     title: '菜单配置',
@@ -501,7 +489,6 @@ const App = () => {
       !isAuthenticated ||
       location.pathname === '/login' ||
       !accessReady ||
-      APP_ONLY_PATHS.includes(currentAccessPath) ||
       canAccessMenuPath(menus, currentRole, currentAccessPath)
     ) {
       return
@@ -521,7 +508,6 @@ const App = () => {
 
   const renderProtectedPage = (path, element) => {
     if (
-      APP_ONLY_PATHS.includes(path) ||
       !accessReady ||
       canAccessMenuPath(menus, currentRole, path)
     ) {
@@ -532,25 +518,12 @@ const App = () => {
   }
 
   const handleUserMenuClick = ({ key }) => {
-    if (key === 'profile') {
-      navigate('/profile')
-      return
-    }
-
     if (key === 'logout') {
       handleLogout()
     }
   }
 
   const userMenuItems = [
-    {
-      key: 'profile',
-      icon: <UserOutlined />,
-      label: '我的',
-    },
-    {
-      type: 'divider',
-    },
     {
       key: 'role-label',
       disabled: true,
@@ -689,23 +662,6 @@ const App = () => {
               element={renderProtectedPage(
                 '/bill-calendar',
                 <BillCalendar transactionCategoryField={transactionCategoryField} />
-              )}
-            />
-            <Route
-              path="/discover"
-              element={renderProtectedPage('/discover', <Discover />)}
-            />
-            <Route
-              path="/profile"
-              element={renderProtectedPage(
-                '/profile',
-                <Profile
-                  avatarColor={avatarColor}
-                  avatarText={avatarText}
-                  currentRole={currentRole}
-                  onLogout={handleLogout}
-                  userName={userName}
-                />
               )}
             />
             <Route

@@ -30,14 +30,14 @@ const TransactionLedger = ({
               onClick={() => onMonthSelect(group.monthKey)}
               type="button"
             >
-              <span>
+              <strong>
                 {group.monthKey.slice(0, 4)}年
                 {Number(group.monthKey.slice(5))}月
-              </span>
+              </strong>
               <em>结余 {formatAmount(group.balance)}</em>
               <small>
-                收入 {formatAmount(group.income)}　支出{' '}
-                {formatAmount(group.expense)}
+                <span>收入 {formatAmount(group.income)}</span>
+                <span>支出 {formatAmount(group.expense)}</span>
               </small>
             </button>
           ))

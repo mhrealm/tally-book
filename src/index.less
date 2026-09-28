@@ -99,7 +99,7 @@ textarea {
   display: flex;
   height: 100vh;
   min-height: 0;
-  min-width: 0;
+  min-width: 1200px;
   flex-direction: column;
   background: var(--app-bg);
   overflow: hidden;
@@ -424,117 +424,4 @@ textarea {
 
 .ant-form-item {
   min-width: 0;
-}
-
-@media (max-width: 828px) {
-  #root {
-    height: 100svh;
-  }
-
-  .admin-shell {
-    height: 100svh;
-    min-height: 0;
-  }
-
-  .admin-body {
-    flex-direction: column;
-  }
-
-  .admin-main {
-    width: 100%;
-  }
-
-  .admin-topbar {
-    min-height: 60px;
-    padding: 0 12px;
-
-    .book-cover {
-      width: 34px;
-      height: 34px;
-      flex-basis: 34px;
-      font-size: var(--font-size-xl);
-    }
-
-    .book-title strong {
-      font-size: var(--font-size-xl);
-    }
-
-    .book-tag,
-    .current-role-tag,
-    .admin-date {
-      display: none;
-    }
-  }
-
-  .admin-actions {
-    width: auto;
-    gap: 8px;
-  }
-
-  .admin-page-title {
-    display: none;
-  }
-
-  .current-role-tag {
-    max-width: 120px;
-  }
-
-  .user-trigger {
-    padding-right: 8px;
-  }
-
-  .admin-content {
-    padding: 10px 10px calc(84px + env(safe-area-inset-bottom));
-  }
-}
-
-@media (max-width: 640px) {
-  .admin-topbar {
-    padding: 0 10px;
-  }
-
-  .book-back {
-    width: 28px;
-    padding-right: 10px;
-  }
-
-  .user-name {
-    max-width: 92px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .admin-content {
-    padding: 10px 10px calc(84px + env(safe-area-inset-bottom));
-  }
-
-  .page-panel {
-    border-radius: 6px;
-  }
-
-  .ant-btn {
-    min-height: 36px;
-    padding-inline: 13px;
-    font-size: var(--font-size-base);
-  }
-
-  .ant-modal {
-    max-width: calc(100vw - 24px);
-    margin: 12px auto;
-  }
-
-  .ant-modal-content {
-    padding: 10px !important;
-  }
-}
-
-@media (max-width: 420px) {
-  .current-role-tag {
-    max-width: 96px;
-  }
-
-  .user-name {
-    display: none !important;
-  }
 }
