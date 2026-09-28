@@ -1,128 +1,86 @@
 .bill-calendar-page {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+
+  .income,
+  .income-text {
+    color: var(--color-income);
+  }
+
+  .expense,
+  .expense-text {
+    color: var(--color-expense);
+  }
 }
 
 .bill-calendar-summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  padding: 20px 0;
 }
 
 .summary-item {
-  position: relative;
   display: grid;
-  min-height: 52px;
-  grid-template-columns: 34px minmax(0, 1fr);
+  min-width: 0;
+  grid-template-columns: 32px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
-  overflow: hidden;
-  padding: 10px;
-  border-color: #e8edf3;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+  gap: 12px;
+  padding: 0 24px;
+  border-left: 1px solid var(--color-line);
 
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: #aaaaaa;
-    content: '';
-  }
-
-  &.income::before {
-    background: #16a34a;
-  }
-
-  &.expense::before {
-    background: #ea522d;
-  }
-
-  &.count::before {
-    background: var(--theme-primary);
-  }
-
-  &.total::before {
-    background: #7c3aed;
+  &:first-child {
+    border-left: 0;
   }
 
   .summary-icon {
-    display: inline-flex;
-    width: 34px;
-    height: 34px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    background: #f8f8f8;
-    color: #475569;
-    font-size: 14px;
-  }
-
-  &.income .summary-icon {
-    background: #ecfdf3;
-    color: #16a34a;
-  }
-
-  &.expense .summary-icon {
-    background: #fef2f2;
-    color: #ea522d;
-  }
-
-  &.count .summary-icon {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border-radius: 10px;
     background: var(--theme-primary-soft);
-    color: var(--theme-primary-deep);
-  }
-
-  &.total .summary-icon {
-    background: #f5f3ff;
-    color: #7c3aed;
+    color: var(--theme-primary);
+    font-size: 16px;
   }
 
   span {
-    color: #888b99;
+    color: var(--color-weak);
     font-size: 12px;
   }
 
   strong {
     display: block;
     overflow: hidden;
-    margin-top: 2px;
-    color: #222226;
-    font-size: 14px;
-    font-weight: 700;
+    margin-top: 4px;
+    color: var(--color-text-strong);
+    font-size: 18px;
+    font-weight: 500;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-}
 
-.income,
-.income-text {
-  color: #16a34a;
-}
+  &.income strong {
+    color: var(--color-income);
+  }
 
-.expense,
-.expense-text {
-  color: #ea522d;
+  &.expense strong {
+    color: var(--color-expense);
+  }
 }
 
 .bill-calendar-layout {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 16px;
   align-items: start;
-  justify-content: start;
 }
 
 .bill-calendar-board {
   width: 100%;
   aspect-ratio: 1 / 1;
   min-height: 0;
-  padding: 10px;
-  border-color: #f1f1f1;
-  background: #fff;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  padding: 16px;
   overflow: hidden;
 
   .ant-picker-calendar {
@@ -131,7 +89,8 @@
   }
 
   .ant-picker-panel {
-    height: calc(100% - 30px);
+    height: calc(100% - 48px);
+    border-top: 0 !important;
     background: transparent;
   }
 
@@ -146,15 +105,11 @@
   }
 
   .ant-picker-content th {
-    height: 28px;
-    color: #aaaaaa;
+    height: 32px;
+    color: var(--color-weak);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
-  }
-
-  .ant-picker-calendar-header {
-    padding: 0 0 6px;
   }
 
   .ant-picker-cell {
@@ -163,17 +118,16 @@
 
   .ant-picker-calendar-date,
   .ant-picker-cell-inner {
-    border-top: 0 !important;
     min-height: 0;
-    border-radius: 12px;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: 0 !important;
+    border-radius: 8px;
     overflow: hidden;
   }
 
   .ant-picker-cell-selected .ant-picker-calendar-date,
-  .ant-picker-cell-selected .ant-picker-cell-inner {
-    background: transparent !important;
-  }
-
+  .ant-picker-cell-selected .ant-picker-cell-inner,
   .ant-picker-cell:hover .ant-picker-cell-inner,
   .ant-picker-cell:hover .ant-picker-calendar-date {
     background: transparent !important;
@@ -185,7 +139,7 @@
   }
 
   .ant-picker-calendar-date-content {
-    height: auto !important;
+    height: 100% !important;
     overflow: hidden !important;
   }
 
@@ -196,15 +150,16 @@
 
 .calendar-custom-header {
   display: grid;
+  height: 48px;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 10px;
-  padding: 0 0 14px;
+  gap: 12px;
+  margin-top: -8px;
 
   > strong {
-    color: #222226;
+    color: var(--color-text-strong);
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     white-space: nowrap;
   }
 
@@ -217,26 +172,27 @@
   }
 
   .ant-btn {
-    width: 34px;
-    height: 34px;
-    border-radius: 999px;
-    background: #f8f8f8;
-    color: #575757;
-    box-shadow: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    color: var(--color-muted);
 
     &:hover {
-      background: var(--theme-primary-soft);
-      color: var(--theme-primary-deep);
+      background: var(--color-line) !important;
+      color: var(--color-text-strong) !important;
     }
   }
 
   .calendar-today-button {
     width: auto;
     padding: 0 12px;
-    border: 1px solid var(--theme-primary-border);
-    background: #fff;
-    color: var(--theme-primary-deep);
-    font-size: 12px;
+    border: 1px solid var(--theme-primary);
+    color: var(--theme-primary);
+
+    &:hover {
+      background: var(--theme-primary-soft) !important;
+      color: var(--theme-primary) !important;
+    }
   }
 }
 
@@ -247,76 +203,71 @@
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 3px 1px;
-  border: 0;
-  border-radius: 14px;
-  background: transparent;
-  color: #222226;
+  padding: 4px 1px;
+  border-radius: 8px;
+  color: var(--color-text-strong);
   transition: background 0.2s ease;
 
   &:hover .calendar-day-number {
-    background: #f8f8f8;
+    background: var(--color-line);
   }
 
   &.muted {
-    opacity: 0.34;
+    opacity: 0.35;
   }
 
   &.has-bills .calendar-day-number {
     background: var(--theme-primary-soft);
-    color: var(--theme-primary-deep);
-  }
-
-  &.selected .calendar-day-number {
-    border-color: var(--theme-primary-hover);
-    background: var(--theme-primary);
-    color: #fff;
-    box-shadow: 0 8px 18px var(--theme-primary-shadow);
+    color: var(--theme-primary);
   }
 
   &.today:not(.selected) .calendar-day-number {
-    border-color: var(--theme-primary-border);
+    border-color: var(--theme-primary);
+  }
+
+  &.selected .calendar-day-number {
+    background: var(--theme-primary-gradient);
+    color: #fff;
   }
 }
 
 .calendar-day-number {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border: 1px solid transparent;
-  border-radius: 999px;
-  color: #575757;
-  font-size: 12px;
-  font-weight: 700;
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 14px;
 }
 
 .calendar-day-money {
   display: flex;
-  align-items: center;
   width: 100%;
   min-width: 0;
+  align-items: center;
   flex-direction: column;
   gap: 1px;
   margin-top: 2px;
   overflow: hidden;
 
   span {
+    max-width: 100%;
     overflow: hidden;
     font-size: 12px;
-    font-weight: 650;
-    line-height: 1.15;
+    line-height: 1.2;
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .day-income {
-    color: #16a34a;
+    color: var(--color-income);
   }
 
   .day-expense {
-    color: #ef4444;
+    color: var(--color-expense);
   }
 }
 
@@ -326,10 +277,7 @@
   aspect-ratio: 1 / 1;
   min-height: 0;
   flex-direction: column;
-  padding: 10px;
-  border-color: #f1f1f1;
-  background: #fff;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  padding: 16px 16px 8px;
   overflow: hidden;
 }
 
@@ -338,39 +286,43 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 
   h3 {
     margin: 0;
-    color: #222226;
-    font-size: 17px;
-    font-weight: 700;
+    color: var(--color-text-strong);
+    font-size: 16px;
+    font-weight: 500;
   }
 
   span {
     display: block;
     margin-top: 4px;
-    color: #888b99;
+    color: var(--color-weak);
     font-size: 12px;
+  }
+
+  .ant-tag {
+    margin: 0;
+    border-radius: 4px;
   }
 }
 
 .detail-total {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin-bottom: 14px;
-  padding: 10px 0;
-  border-top: 1px solid #f8f8f8;
-  border-bottom: 1px solid #f8f8f8;
+  margin-bottom: 8px;
+  padding: 12px 0;
+  border-radius: 8px;
+  background: var(--surface-muted);
 
   > div {
     min-width: 0;
-    padding: 0 10px;
-    border-right: 1px solid #f8f8f8;
+    padding: 0 16px;
+    border-left: 1px solid var(--color-border);
 
-    &:last-child {
-      border-right: 0;
+    &:first-child {
+      border-left: 0;
     }
   }
 
@@ -380,15 +332,16 @@
   }
 
   span {
-    color: #aaaaaa;
+    color: var(--color-weak);
     font-size: 12px;
   }
 
   strong {
     overflow: hidden;
-    margin-top: 3px;
-    font-size: 13px;
-    font-weight: 700;
+    margin-top: 4px;
+    color: var(--color-text-strong);
+    font-size: 16px;
+    font-weight: 500;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -398,10 +351,16 @@
   min-height: 0;
   flex: 1;
   overflow-y: auto;
-  padding-right: 6px;
 
   .ant-list-item {
-    padding: 10px 0;
+    height: 56px;
+    padding: 0 8px;
+    border-block-end: 0 !important;
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
   }
 }
 
@@ -410,20 +369,18 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-bottom-color: #f1f1f1;
+
+  .income-text,
+  .expense-text {
+    font-weight: 500;
+  }
 }
 
 .detail-item-main {
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: 10px;
-
-  .ant-tag {
-    flex: 0 0 auto;
-    border-radius: 999px;
-    margin-right: 0;
-  }
+  gap: 12px;
 
   > div {
     min-width: 0;
@@ -438,37 +395,35 @@
   }
 
   strong {
-    max-width: 190px;
-    color: #222226;
-    font-size: 13px;
+    max-width: 220px;
+    color: var(--color-text-strong);
+    font-size: 14px;
+    font-weight: 400;
   }
 
   span {
-    margin-top: 3px;
-    color: #aaaaaa;
+    margin-top: 2px;
+    color: var(--color-weak);
     font-size: 12px;
   }
 }
 
 .detail-category-icon {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   place-items: center;
-  flex: 0 0 34px;
-  border-radius: 999px;
-  background: var(--theme-primary-soft);
-  color: var(--theme-primary-deep);
-  font-size: 12px;
-  font-weight: 700;
+  flex: 0 0 32px;
+  border-radius: 10px;
+  font-size: 14px;
 
   &.income {
-    background: #ecfdf3;
-    color: #16a34a;
+    background: #fff3f1;
+    color: var(--color-income);
   }
 
   &.expense {
-    background: #fff1f2;
-    color: #e11d48;
+    background: #eef7f9;
+    color: var(--color-expense);
   }
 }

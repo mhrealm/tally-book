@@ -2,9 +2,9 @@ import { Empty, Tag, Tree } from 'antd'
 import { renderMenuIcon } from '../../common/menu-icons'
 
 const getTreeTitle = (item) => (
-  <div className="menu-tree-title">
-    <span className="menu-tree-icon">{renderMenuIcon(item.icon)}</span>
-    <span className="menu-tree-name">{item.title}</span>
+  <div className="config-tree-title">
+    <span className="config-tree-icon">{renderMenuIcon(item.icon)}</span>
+    <span className="config-tree-name">{item.title}</span>
     <Tag color={item.enabled ? 'success' : 'default'}>
       {item.enabled ? '启用' : '禁用'}
     </Tag>
@@ -39,7 +39,7 @@ const MenuTreePanel = ({
       {treeData.length ? (
         <Tree
           blockNode
-          className="menu-tree"
+          className="config-tree"
           expandedKeys={expandedKeys}
           onExpand={onExpand}
           onSelect={onSelect}

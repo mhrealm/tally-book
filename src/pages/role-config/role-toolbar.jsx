@@ -3,7 +3,7 @@ import { PlusOutlined, ReloadOutlined } from '@ant-design/icons'
 
 const RoleToolbar = ({ onAdd, onReset, saving }) => {
   return (
-    <div className="role-config-toolbar">
+    <div className="config-toolbar page-panel">
       <Space wrap>
         <Button
           disabled={saving}

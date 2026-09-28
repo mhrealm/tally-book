@@ -93,7 +93,7 @@ const CategoryTable = ({
     {
       title: '操作',
       key: 'action',
-      width: 140,
+      width: 160,
       render: (_, record) => (
         <Space size={8}>
           <Button
@@ -128,7 +128,7 @@ const CategoryTable = ({
       pagination={false}
       rowClassName={(record) => (record.enabled === false ? 'is-hidden' : '')}
       rowKey="value"
-      scroll={{ x: 860, y: 520 }}
+      scroll={{ y: 520 }}
     />
   )
 }

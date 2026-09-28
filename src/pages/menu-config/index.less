@@ -4,13 +4,6 @@
   gap: 16px;
 }
 
-.menu-config-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
-}
-
 .menu-config-layout {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
@@ -21,64 +14,7 @@
 .menu-tree-panel,
 .menu-editor-panel {
   min-height: 520px;
-  padding: 10px;
-}
-
-.panel-heading {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
-
-  h3 {
-    margin: 0;
-    color: #222226;
-    font-size: 14px;
-    font-weight: 650;
-  }
-
-  span {
-    display: block;
-    margin-top: 4px;
-    color: #888b99;
-    font-size: 12px;
-  }
-}
-
-.menu-tree {
-  .ant-tree-node-content-wrapper {
-    min-height: 34px;
-    padding: 5px 8px;
-    border-radius: 6px;
-  }
-
-  .ant-tree-node-selected {
-    background: var(--theme-primary-soft) !important;
-  }
-}
-
-.menu-tree-title {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: 8px;
-}
-
-.menu-tree-icon {
-  display: inline-flex;
-  width: 16px;
-  flex: 0 0 16px;
-  justify-content: center;
-  color: #888b99;
-}
-
-.menu-tree-name {
-  overflow: hidden;
-  color: #222226;
-  font-size: 13px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  padding: 16px;
 }
 
 .menu-edit-form {
@@ -88,10 +24,5 @@
 .menu-form-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 140px;
-  gap: 12px;
-}
-
-.menu-form-actions {
-  display: flex;
-  justify-content: flex-end;
+  gap: 16px;
 }

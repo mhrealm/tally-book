@@ -131,7 +131,7 @@ const UserEditorPanel = ({
             </Form.Item>
           </div>
 
-          <div className="user-form-actions">
+          <div className="config-form-actions">
             <Popconfirm
               cancelText="取消"
               disabled={!canDelete}

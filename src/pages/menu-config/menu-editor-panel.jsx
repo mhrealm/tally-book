@@ -88,7 +88,7 @@ const MenuEditorPanel = ({
             <Switch checkedChildren="启用" unCheckedChildren="禁用" />
           </Form.Item>
 
-          <div className="menu-form-actions">
+          <div className="config-form-actions">
             <Button
               icon={<SaveOutlined />}
               loading={saving}

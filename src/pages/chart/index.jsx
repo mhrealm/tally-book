@@ -183,7 +183,7 @@ const Chart = ({ transactionCategoryField }) => {
 
   return (
     <div className="report-page">
-      <div className="report-toolbar">
+      <div className="report-toolbar page-panel">
         <h2>{activeTab}</h2>
         <div className="report-toolbar-actions">
           <Button icon={<LeftOutlined />} onClick={() => changeYear(-1)} />
@@ -201,7 +201,7 @@ const Chart = ({ transactionCategoryField }) => {
       <Spin spinning={loading}>
         <section className="report-grid">
           <div className="report-left">
-            <div className="report-asset-card">
+            <div className="report-asset-card page-panel">
               <div>
                 <span>账本流水统计</span>
                 <em>结余</em>
@@ -230,7 +230,9 @@ const Chart = ({ transactionCategoryField }) => {
                       <strong>{item.label}</strong>
                       <em>{(item.percent * 100).toFixed(2)}%</em>
                       <b>{formatAmount(item.amount)}</b>
-                      <i style={{ width: `${Math.max(item.percent * 100, 6)}%` }} />
+                      <div className="report-rank-bar">
+                        <i style={{ width: `${Math.max(item.percent * 100, 2)}%` }} />
+                      </div>
                     </div>
                   ))
                 ) : (

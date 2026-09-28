@@ -19,9 +19,9 @@ const createPermissionTreeData = (menus) =>
   menus.map((item) => ({
     key: item.id,
     title: (
-      <div className="role-menu-tree-title">
-        <span className="role-menu-tree-icon">{renderMenuIcon(item.icon)}</span>
-        <span className="role-menu-tree-name">{item.title}</span>
+      <div className="config-tree-title">
+        <span className="config-tree-icon">{renderMenuIcon(item.icon)}</span>
+        <span className="config-tree-name">{item.title}</span>
         <Tag color={item.enabled ? 'success' : 'default'}>
           {item.enabled ? '启用' : '停用'}
         </Tag>
@@ -117,7 +117,7 @@ const RoleEditorPanel = ({
               </Form.Item>
             </div>
 
-            <div className="role-form-actions">
+            <div className="config-form-actions">
               <Popconfirm
                 cancelText="取消"
                 disabled={!canDelete}
@@ -155,7 +155,7 @@ const RoleEditorPanel = ({
               <Tree
                 checkable
                 checkedKeys={checkedKeys}
-                className="role-menu-tree"
+                className="config-tree"
                 disabled={isAdmin}
                 expandedKeys={expandedKeys}
                 onCheck={onCheck}

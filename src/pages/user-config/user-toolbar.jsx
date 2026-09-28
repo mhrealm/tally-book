@@ -10,7 +10,7 @@ const UserToolbar = ({
   showHidden,
 }) => {
   return (
-    <div className="user-config-toolbar">
+    <div className="config-toolbar page-panel">
       <Space wrap>
         <Button
           disabled={saving}

@@ -10,11 +10,11 @@ const RoleListPanel = ({ draftRole, onSelect, roles, selectedId }) => {
           <span>当前共 {roles.length} 个角色</span>
         </div>
       </div>
-      <div className="role-list">
+      <div className="config-list">
         {roles.map((role) => (
           <button
             className={[
-              'role-list-item',
+              'config-list-item',
               !draftRole && selectedId === role.id ? 'active' : '',
             ]
               .filter(Boolean)
@@ -23,10 +23,10 @@ const RoleListPanel = ({ draftRole, onSelect, roles, selectedId }) => {
             onClick={() => onSelect(role.id)}
             type="button"
           >
-            <span className="role-list-icon">
+            <span className="config-list-icon">
               <SafetyOutlined />
             </span>
-            <span className="role-list-content">
+            <span className="config-list-content">
               <strong>{role.name}</strong>
               <em>{role.description || '暂无描述'}</em>
             </span>

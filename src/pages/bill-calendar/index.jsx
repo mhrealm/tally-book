@@ -290,12 +290,10 @@ const BillCalendar = ({ transactionCategoryField }) => {
 
   return (
     <div className="bill-calendar-page">
-      <div className="bill-calendar-summary">
+      <div className="bill-calendar-summary page-panel">
         {summaryCards.map((item) => (
           <section
-            className={['summary-item', 'page-panel', item.className]
-              .filter(Boolean)
-              .join(' ')}
+            className={['summary-item', item.className].join(' ')}
             key={item.label}
           >
             <span className="summary-icon">{item.icon}</span>

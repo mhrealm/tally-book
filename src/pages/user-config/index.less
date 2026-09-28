@@ -4,29 +4,9 @@
   gap: 16px;
 }
 
-.user-config-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
-  padding: 10px;
-  border: 1px solid #f1f1f1;
-  border-radius: 14px;
-  background: #fff;
-
-  a {
-    display: inline-flex;
-  }
-
-  .ant-checkbox-wrapper {
-    color: #888b99;
-    font-weight: 650;
-  }
-}
-
 .user-config-layout {
   display: grid;
-  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
@@ -34,76 +14,7 @@
 .user-list-panel,
 .user-editor-panel {
   min-height: 520px;
-  padding: 10px;
-}
-
-.user-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.user-list-item {
-  display: grid;
-  width: 100%;
-  min-height: 68px;
-  grid-template-columns: 34px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border: 1px solid #e0e1ed;
-  border-radius: 8px;
-  background: #fff;
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-  transition: border-color 0.2s ease, background 0.2s ease,
-    box-shadow 0.2s ease;
-
-  &:hover,
-  &.active {
-    border-color: var(--theme-primary-border);
-    background: var(--theme-primary-tint);
-    box-shadow: 0 1px 3px var(--theme-primary-shadow-soft);
-  }
-}
-
-.user-list-icon {
-  display: inline-flex;
-  width: 34px;
-  height: 34px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: var(--theme-primary-soft);
-  color: var(--theme-primary-deep);
-  font-size: 14px;
-}
-
-.user-list-content {
-  min-width: 0;
-
-  strong,
-  em {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  strong {
-    color: #222226;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 650;
-  }
-
-  em {
-    margin-top: 4px;
-    color: #888b99;
-    font-size: 12px;
-    font-style: normal;
-  }
+  padding: 16px;
 }
 
 .user-edit-form {
@@ -113,15 +24,9 @@
 .user-form-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 
   &.small {
     grid-template-columns: 160px minmax(0, 1fr);
   }
-}
-
-.user-form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
 }

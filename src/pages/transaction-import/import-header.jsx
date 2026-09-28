@@ -16,7 +16,6 @@ const ImportHeader = ({ disabled, importing, onBack, onImport }) => {
         <strong>数据导入</strong>
       </div>
       <Button
-        className="transaction-import-submit"
         disabled={disabled}
         icon={<UploadOutlined />}
         loading={importing}

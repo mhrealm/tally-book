@@ -11,11 +11,11 @@ const UserListPanel = ({ draftUser, onSelect, roles, selectedId, users }) => {
           <span>当前共 {users.length} 个成员</span>
         </div>
       </div>
-      <div className="user-list">
+      <div className="config-list">
         {users.map((user) => (
           <button
             className={[
-              'user-list-item',
+              'config-list-item',
               !draftUser && selectedId === user.id ? 'active' : '',
             ]
               .filter(Boolean)
@@ -24,10 +24,10 @@ const UserListPanel = ({ draftUser, onSelect, roles, selectedId, users }) => {
             onClick={() => onSelect(user.id)}
             type="button"
           >
-            <span className="user-list-icon">
+            <span className="config-list-icon">
               <UserOutlined />
             </span>
-            <span className="user-list-content">
+            <span className="config-list-content">
               <strong>{user.name || user.username}</strong>
               <em>
                 {user.username} · {getRoleName(roles, user.roleId)}
