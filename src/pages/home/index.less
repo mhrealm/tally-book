@@ -4,7 +4,6 @@
   gap: 18px;
 }
 
-.home-hero-grid,
 .home-main-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
@@ -12,119 +11,67 @@
   align-items: stretch;
 }
 
-.asset-card {
-  position: relative;
-  min-height: 150px;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #67bdd1;
-  box-shadow: 0 18px 34px rgba(255, 154, 61, 0.12);
-  color: #fff;
+.home-overview {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.2fr) repeat(3, minmax(0, 1fr));
+  padding: 24px 0;
 }
 
-.asset-card-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 82% 24%, rgba(255, 255, 255, 0.52), transparent 13%),
-    radial-gradient(circle at 76% 72%, rgba(255, 228, 196, 0.45), transparent 17%),
-    linear-gradient(135deg, rgba(101, 198, 198, 0.98), rgba(255, 154, 61, 0.82));
-
-  &::before,
-  &::after {
-    position: absolute;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.3);
-    content: '';
-  }
-
-  &::before {
-    right: 72px;
-    bottom: -28px;
-    width: 168px;
-    height: 168px;
-  }
-
-  &::after {
-    right: -36px;
-    bottom: 34px;
-    width: 112px;
-    height: 112px;
-  }
-}
-
-.asset-card-content {
-  position: relative;
-  z-index: 1;
+.overview-asset,
+.overview-period {
   display: flex;
-  height: 100%;
-  min-height: 150px;
+  min-width: 0;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 10px;
+  justify-content: center;
+  padding: 0 24px;
+  border-left: 1px solid var(--color-line);
+}
 
-  span,
-  em {
-    color: rgba(255, 255, 255, 0.88);
-    font-style: normal;
-  }
+.overview-asset {
+  border-left: 0;
 
-  span {
-    font-size: 13px;
-    font-weight: 650;
+  > span {
+    color: var(--color-muted);
+    font-size: 14px;
   }
 
   strong {
     margin-top: 8px;
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1;
+    color: var(--color-text-strong);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
   }
 
   div {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
-    margin-top: 14px;
+    gap: 16px;
+    margin-top: 12px;
+    color: var(--color-weak);
     font-size: 12px;
   }
-}
 
-.period-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.period-row {
-  display: grid;
-  min-height: 76px;
-  grid-template-columns: 40px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 14px;
-  padding: 10px;
-  border-bottom: 1px solid #f0f2f5;
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  strong,
   em {
-    display: block;
+    font-style: normal;
   }
+}
+
+.overview-period-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
 
   strong {
-    color: #111827;
-    font-size: 15px;
-    font-weight: 750;
+    color: var(--color-text-strong);
+    font-size: 16px;
+    font-weight: 500;
   }
 
   em {
-    margin-top: 4px;
-    color: #9ca3af;
+    color: var(--color-weak);
     font-size: 12px;
     font-style: normal;
   }
@@ -132,33 +79,33 @@
 
 .period-icon {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border-radius: 10px;
-  background: #effafa;
-  color: #2f9aa0;
+  background: var(--theme-primary-soft);
+  color: var(--theme-primary);
   font-size: 16px;
 }
 
 .period-amounts {
   display: grid;
-  gap: 4px;
-  color: #9ca3af;
+  gap: 6px;
+  color: var(--color-weak);
   font-size: 12px;
-  text-align: right;
 
   b {
-    margin-left: 6px;
-    font-size: 14px;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .income {
-    color: #ef5b3f;
+    color: var(--color-income);
   }
 
   .expense {
-    color: #2388a5;
+    color: var(--color-expense);
   }
 }
 
@@ -182,13 +129,13 @@
 
   h3 {
     margin: 0;
-    color: #111827;
+    color: #222226;
     font-size: 16px;
     font-weight: 800;
   }
 
   span {
-    color: #9ca3af;
+    color: #aaaaaa;
     font-size: 12px;
   }
 }
@@ -219,7 +166,7 @@
 }
 
 .ranking-index {
-  color: #9ca3af;
+  color: #aaaaaa;
   font-size: 12px;
 }
 
@@ -228,7 +175,7 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #fff2e8;
+  background: #fdf6ef;
   color: var(--theme-primary-deep);
   font-weight: 800;
 }
@@ -251,7 +198,7 @@
 
   strong {
     overflow: hidden;
-    color: #111827;
+    color: #222226;
     font-size: 13px;
     font-weight: 750;
     text-overflow: ellipsis;
@@ -259,12 +206,12 @@
   }
 
   span {
-    color: #8a8f99;
+    color: #888b99;
     font-size: 12px;
   }
 
   b {
-    color: #374151;
+    color: #575757;
     font-size: 13px;
   }
 
@@ -299,13 +246,13 @@
 }
 
 .member-row strong {
-  color: #111827;
+  color: #222226;
   font-weight: 750;
 }
 
 .member-row em {
   margin-top: 4px;
-  color: #9ca3af;
+  color: #aaaaaa;
   font-size: 12px;
   font-style: normal;
 }
@@ -313,61 +260,13 @@
 .member-amounts {
   display: grid;
   gap: 4px;
-  color: #8a8f99;
+  color: #888b99;
   font-size: 12px;
   text-align: right;
 }
 
 .home-empty {
   margin: 0;
-  color: #9ca3af;
+  color: #aaaaaa;
   font-size: 12px;
-}
-
-.home-quick-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.home-quick-item {
-  display: flex;
-  min-height: 116px;
-  flex-direction: column;
-  justify-content: center;
-  padding: 10px;
-  color: #111827;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    border-color: var(--theme-primary-border);
-    color: #111827;
-    box-shadow: 0 10px 24px var(--theme-primary-shadow-soft);
-    transform: translateY(-1px);
-  }
-
-  strong {
-    margin-top: 12px;
-    font-size: 13px;
-    font-weight: 750;
-  }
-
-  em {
-    margin-top: 6px;
-    color: #8a8f99;
-    font-size: 12px;
-    font-style: normal;
-  }
-}
-
-.home-quick-icon {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  border-radius: 12px;
-  background: var(--theme-primary-soft);
-  color: var(--theme-primary-deep);
-  font-size: 18px;
 }

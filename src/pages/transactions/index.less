@@ -9,26 +9,86 @@
     height: 100%;
     min-height: 0;
     flex-direction: column;
-    border-color: var(--color-line);
     overflow: hidden;
+  }
+
+  .transaction-header {
+    display: flex;
+    height: 62px;
+    flex-shrink: 0;
+    align-items: center;
+    padding: 0 16px 0 24px;
+    border-bottom: 1px solid var(--color-line);
+    border-radius: 12px 12px 0 0;
+    background: #fff;
+  }
+
+  .transaction-title {
+    margin-right: 40px;
+    color: var(--color-text-strong);
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .transaction-stats {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    align-items: center;
+
+    span {
+      display: inline-flex;
+      align-items: baseline;
+      margin-right: 40px;
+      color: var(--color-muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    b {
+      margin-left: 12px;
+      color: var(--color-text-strong);
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .income b {
+      color: var(--color-income);
+    }
+
+    .expense b {
+      color: var(--color-expense);
+    }
+  }
+
+  .transaction-header-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 16px;
+    color: var(--color-muted);
+    font-size: 14px;
+
+    .ant-btn {
+      height: auto;
+      padding: 5px 16px;
+    }
   }
 
   .transaction-panel-head {
     flex-shrink: 0;
     border-bottom: 1px solid var(--color-line);
     background: #fff;
-    padding: 10px 10px 0;
+    padding: 12px 24px;
   }
 
   .search-form-wrap {
     display: grid;
-    flex: 1;
     grid-template-columns:
-      minmax(260px, 1.25fr) minmax(150px, 0.75fr) minmax(170px, 0.8fr)
-      auto;
-    align-items: end;
-    gap: 10px;
-    padding: 0 0 10px;
+      minmax(280px, 1.3fr) minmax(180px, 0.8fr) minmax(180px, 0.8fr)
+      minmax(220px, 1fr);
+    align-items: center;
+    gap: 16px;
 
     .ant-form-item {
       min-width: 0;
@@ -36,98 +96,41 @@
       margin-bottom: 0;
     }
 
-    .ant-form-item:not(.search-form-actions) .ant-form-item-row {
-      display: grid;
+    .ant-form-item-row {
+      display: flex;
       width: 100%;
-      grid-template-columns: 86px minmax(0, 1fr);
+      flex-wrap: nowrap;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .ant-form-item-label {
+      flex-shrink: 0;
       overflow: visible;
       padding: 0;
-      text-align: right;
-    }
 
-    .ant-form-item-label > label {
-      justify-content: flex-end;
-      width: 100%;
-      height: auto;
-      color: #64748b;
-      font-weight: 650;
-      white-space: nowrap;
+      > label {
+        height: auto;
+        color: var(--color-muted);
+        font-size: 14px;
+        white-space: nowrap;
+
+        &::after {
+          display: none;
+        }
+      }
     }
 
     .ant-form-item-control {
       min-width: 0;
-    }
-
-    .search-form-describe {
-      grid-column: 1;
-    }
-
-    .search-form-actions {
-      grid-column: 4;
-      justify-self: end;
-      align-self: end;
-      display: flex;
-      align-items: flex-end;
-
-      .ant-form-item-row,
-      .ant-form-item-control,
-      .ant-form-item-control-input,
-      .ant-form-item-control-input-content {
-        width: auto;
-      }
+      flex: 1;
     }
 
     .ant-picker,
     .ant-select,
-    .ant-input,
     .ant-input-affix-wrapper {
       width: 100% !important;
     }
-
-    .ant-picker,
-    .ant-select-selector,
-    .ant-input,
-    .ant-input-affix-wrapper {
-      display: flex;
-      align-items: center;
-      min-height: 34px;
-    }
-
-    .ant-input-affix-wrapper .ant-input {
-      min-height: 0;
-      padding: 0;
-    }
-  }
-
-  .transaction-export-button {
-    height: 34px;
-    min-width: 64px;
-    border: 0;
-    border-radius: 8px;
-    background: transparent;
-    box-shadow: none;
-    color: #64748b;
-    line-height: 1;
-    padding-inline: 12px;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      border: 0;
-      background: transparent;
-      color: #111827;
-    }
-  }
-
-  .transaction-total {
-    padding-right: 30px;
-    font-weight: 700;
-    text-align: center;
   }
 
   .transaction-ledger {
@@ -136,13 +139,13 @@
     flex: 1;
     grid-template-columns: 220px minmax(0, 1fr);
     overflow: hidden;
+    background: #fff;
   }
 
   .ledger-months {
     min-width: 0;
     overflow-y: auto;
     border-right: 1px solid var(--color-line);
-    background: #fbfcfd;
     padding: 12px;
   }
 
@@ -150,37 +153,42 @@
     display: grid;
     width: 100%;
     gap: 6px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     padding: 12px 14px;
     border: 0;
-    border-radius: 10px;
+    border-radius: 8px;
     background: transparent;
-    color: #4b5563;
+    color: var(--color-text);
     cursor: pointer;
+    font-family: inherit;
     text-align: left;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease;
 
     &:last-child {
       margin-bottom: 0;
     }
 
-    &.active,
     &:hover {
-      background: #fff;
-      box-shadow:
-        inset 3px 0 0 var(--theme-primary),
-        0 6px 14px rgba(15, 23, 42, 0.05);
+      background: var(--surface-muted);
+    }
+
+    &.active {
+      background: var(--theme-primary-soft);
+
+      strong {
+        color: var(--theme-primary);
+      }
     }
 
     strong {
-      color: #111827;
+      color: var(--color-text-strong);
       font-size: 14px;
-      font-weight: 750;
+      font-weight: 500;
       line-height: 1.3;
     }
 
     em {
-      color: #4b5563;
+      color: var(--color-text);
       font-size: 12px;
       font-style: normal;
       line-height: 1.4;
@@ -190,7 +198,7 @@
       display: flex;
       justify-content: space-between;
       gap: 8px;
-      color: #8a8f99;
+      color: var(--color-weak);
       font-size: 12px;
       line-height: 1.4;
 
@@ -208,65 +216,19 @@
     min-width: 0;
     flex-direction: column;
     overflow: hidden;
-    padding: 10px;
-  }
-
-  .ledger-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 10px;
-
-    .ledger-header-main {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 8px;
-    }
-
-    .ledger-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    strong {
-      color: #111827;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    span {
-      display: inline-flex;
-      min-height: 24px;
-      align-items: center;
-      border-radius: 999px;
-      background: #f8fafc;
-      color: #8a8f99;
-      font-size: 12px;
-      padding: 0 8px;
-    }
-
-    .income {
-      color: #ef5b3f;
-    }
-
-    .expense {
-      color: #2388a5;
-    }
+    padding: 20px 20px 0;
   }
 
   .ledger-table-head,
   .ledger-row {
     display: grid;
     grid-template-columns:
-      minmax(116px, 1.2fr) minmax(82px, 0.7fr) minmax(72px, 0.65fr)
-      minmax(72px, 0.65fr) minmax(96px, 0.85fr) minmax(0, 1fr) 88px;
+      minmax(140px, 1.2fr) minmax(90px, 0.7fr) minmax(80px, 0.65fr)
+      minmax(80px, 0.65fr) minmax(100px, 0.85fr) minmax(0, 1fr) 110px;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
+    padding: 0 16px;
 
     > * {
       min-width: 0;
@@ -274,64 +236,65 @@
   }
 
   .ledger-table-head {
-    min-height: 38px;
-    padding: 0 10px;
-    border-radius: 8px;
-    background: #fafafa;
-    color: #4b5563;
-    font-size: 12px;
-    font-weight: 750;
+    flex-shrink: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+    background: var(--surface-muted);
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+
+    > span:last-child {
+      text-align: right;
+    }
   }
 
   .ledger-scroll {
     min-height: 0;
     flex: 1;
     overflow-y: auto;
-    padding-top: 8px;
+    padding: 8px 0 16px;
   }
 
   .ledger-date-title {
-    margin: 0 0 6px;
-    color: #8a8f99;
+    display: flex;
+    height: 32px;
+    align-items: center;
+    margin-bottom: 7px;
+    padding: 0 16px;
+    color: var(--color-weak);
     font-size: 12px;
   }
 
   .ledger-row {
-    min-height: 52px;
-    margin-bottom: 6px;
-    padding: 0 10px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background: #fff;
-    color: #374151;
+    height: 56px;
+    border-radius: 4px;
+    color: var(--color-text);
+    font-size: 14px;
     transition: background 0.2s ease;
 
-    &:nth-child(even) {
-      background: #fcfcfd;
-    }
-
     &:hover {
-      background: #fff8f3;
+      background: rgba(0, 0, 0, 0.04);
     }
 
     > span {
-      min-width: 0;
       overflow: hidden;
-      color: #4b5563;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     b {
-      font-size: 13px;
-      font-weight: 750;
+      font-size: 14px;
+      font-weight: 500;
 
       &.income {
-        color: #ef5b3f;
+        color: var(--color-income);
       }
 
       &.expense {
-        color: #2388a5;
+        color: var(--color-expense);
       }
     }
   }
@@ -340,23 +303,25 @@
     display: flex;
     min-width: 0;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 
     span {
       display: grid;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       place-items: center;
-      flex: 0 0 28px;
-      border-radius: 8px;
+      flex: 0 0 32px;
+      border-radius: 10px;
       background: var(--theme-primary-soft);
-      color: var(--theme-primary-deep);
-      font-weight: 800;
+      color: var(--theme-primary);
+      font-size: 14px;
+      font-weight: 500;
     }
 
     strong {
       overflow: hidden;
-      color: #111827;
+      color: var(--color-text-strong);
+      font-weight: 400;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -364,26 +329,30 @@
 
   .ledger-actions {
     display: flex;
-    gap: 8px;
+    gap: 16px;
     justify-content: flex-end;
-    min-width: 0;
 
     button {
       height: 24px;
-      padding: 0 6px;
+      padding: 0 4px;
       border: 0;
-      border-radius: 6px;
+      border-radius: 4px;
       background: transparent;
       color: var(--theme-primary);
       cursor: pointer;
-      font-weight: 650;
-
-      &:last-child {
-        color: #ef5b3f;
-      }
+      font-family: inherit;
+      font-size: 14px;
 
       &:hover {
-        background: #f8fafc;
+        background: var(--theme-primary-soft);
+      }
+
+      &:last-child {
+        color: var(--color-income);
+
+        &:hover {
+          background: #fff3f1;
+        }
       }
     }
   }
@@ -392,6 +361,10 @@
     display: grid;
     min-height: 260px;
     place-items: center;
-  }
 
+    .ant-empty-description {
+      color: var(--color-weak);
+      font-size: 12px;
+    }
+  }
 }

@@ -11,7 +11,6 @@ const TransactionLedger = ({
   onDelete,
   onEdit,
   onMonthSelect,
-  summary,
   transactions,
 }) => {
   return (
@@ -47,18 +46,6 @@ const TransactionLedger = ({
       </aside>
 
       <section className="ledger-records">
-        <div className="ledger-header">
-          <div className="ledger-header-main">
-            <strong>流水列表</strong>
-            <span>结余 {formatAmount(summary.balance)}</span>
-            <span className="income">收入 {formatAmount(summary.income)}</span>
-            <span className="expense">支出 {formatAmount(summary.expense)}</span>
-          </div>
-          <div className="ledger-header-actions">
-            <span>{transactions.length} 笔</span>
-          </div>
-        </div>
-
         <div className="ledger-table-head">
           <span>分类</span>
           <span>金额</span>

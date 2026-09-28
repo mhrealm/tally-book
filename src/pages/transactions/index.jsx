@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 import "dayjs/locale/zh-cn"; // 导入中文本地化插件
 
 dayjs.locale("zh-cn"); // 全局使用中文本地化
-import { Form, message } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
+import { Button, Form, message } from "antd";
 import { transactionTypeField } from "../../constants/fields";
 import "./index.less";
 import {
@@ -317,12 +318,31 @@ const Transactions = ({ transactionCategoryField }) => {
   return (
     <div className="transaction">
       <section className="transaction-panel page-panel">
+        <header className="transaction-header">
+          <strong className="transaction-title">流水列表</strong>
+          <div className="transaction-stats">
+            <span>
+              结余<b>{formatAmount(viewSummary.balance)}</b>
+            </span>
+            <span className="income">
+              收入<b>{formatAmount(viewSummary.income)}</b>
+            </span>
+            <span className="expense">
+              支出<b>{formatAmount(viewSummary.expense)}</b>
+            </span>
+          </div>
+          <div className="transaction-header-actions">
+            <span>共 {desktopTransactions.length} 笔</span>
+            <Button icon={<DownloadOutlined />} onClick={handleExport}>
+              导出
+            </Button>
+          </div>
+        </header>
         <div className="transaction-panel-head">
           <TransactionSearchForm
             categoryOptions={searchCategoryOptions}
             dateFormat={dateFormat}
             form={searchForm}
-            onExport={handleExport}
             onSearch={onSearch}
             typeOptions={transactionTypeField.options}
           />
@@ -338,7 +358,6 @@ const Transactions = ({ transactionCategoryField }) => {
           onDelete={handleDelete}
           onEdit={openEditor}
           onMonthSelect={setSelectedMonth}
-          summary={viewSummary}
           transactions={desktopTransactions}
         />
       </section>

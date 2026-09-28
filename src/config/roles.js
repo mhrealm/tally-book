@@ -150,15 +150,3 @@ export const getFirstAccessibleMenuPath = (menus = [], parentEnabled = true) => 
 
   return '/'
 }
-
-export const getAccessibleMenuPaths = (menus = [], parentEnabled = true) =>
-  menus.reduce((paths, item) => {
-    const enabled = parentEnabled && item.enabled !== false
-    const ownPath = enabled && item.path?.startsWith('/') ? [item.path] : []
-
-    return [
-      ...paths,
-      ...ownPath,
-      ...getAccessibleMenuPaths(item.children || [], enabled),
-    ]
-  }, [])

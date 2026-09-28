@@ -1,14 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Line } from '@ant-design/charts'
 import {
   CalendarOutlined,
   CreditCardOutlined,
   EyeOutlined,
   PieChartOutlined,
-  TagsOutlined,
-  TeamOutlined,
-  UnorderedListOutlined,
 } from '@ant-design/icons'
 import { getAllTransactions } from '../../api/transactions'
 import { TRANSACTION_UPDATED_EVENT } from '../../constants/events'
@@ -21,39 +17,6 @@ import {
   summarizeTransactions,
 } from '../../utils/book-stats'
 import './index.less'
-
-const quickLinks = [
-  {
-    title: '流水',
-    desc: '录入、编辑、筛选账单',
-    link: '/transactions',
-    icon: <UnorderedListOutlined />,
-  },
-  {
-    title: '报表',
-    desc: '查看分类和日支出趋势',
-    link: '/chart',
-    icon: <PieChartOutlined />,
-  },
-  {
-    title: '收支分类',
-    desc: '维护分类标签和自动匹配关键词',
-    link: '/category-config',
-    icon: <TagsOutlined />,
-  },
-  {
-    title: '成员管理',
-    desc: '维护成员角色和菜单权限',
-    link: '/user-config',
-    icon: <TeamOutlined />,
-  },
-  {
-    title: '账单日历',
-    desc: '在日历中查看每天账单总额和明细',
-    link: '/bill-calendar',
-    icon: <CalendarOutlined />,
-  },
-]
 
 const periodCards = [
   { key: 'today', icon: <CreditCardOutlined />, title: '今天' },
@@ -86,16 +49,9 @@ const createTrendData = (dailyStats) =>
     },
   ])
 
-const Home = ({
-  accessiblePaths = [],
-  transactionCategoryField,
-  users = [],
-}) => {
+const Home = ({ transactionCategoryField, users = [] }) => {
   const [transactions, setTransactions] = React.useState([])
   const [loading, setLoading] = React.useState(false)
-  const visibleQuickLinks = accessiblePaths.length
-    ? quickLinks.filter((item) => accessiblePaths.includes(item.link))
-    : quickLinks
 
   const fetchTransactions = React.useCallback(async () => {
     setLoading(true)
@@ -167,7 +123,7 @@ const Home = ({
       height: 320,
       scale: {
         color: {
-          range: ['#ef5b3f', '#64c6c6'],
+          range: ['#ea522d', '#2e869a'],
         },
       },
       legend: {
@@ -189,49 +145,44 @@ const Home = ({
 
   return (
     <div className="home-dashboard">
-      <section className="home-hero-grid">
-        <div className="asset-card">
-          <div className="asset-card-bg" />
-          <div className="asset-card-content">
-            <span>净资产</span>
-            <strong>{formatAmount(periodSummary.year.balance)}</strong>
-            <div>
-              <em>总资产 {formatAmount(periodSummary.year.income)}</em>
-              <em>负债 {formatAmount(periodSummary.year.expense)}</em>
-              <EyeOutlined />
-            </div>
+      <section className="home-overview page-panel">
+        <div className="overview-asset">
+          <span>净资产</span>
+          <strong>{formatAmount(periodSummary.year.balance)}</strong>
+          <div>
+            <em>总资产 {formatAmount(periodSummary.year.income)}</em>
+            <em>负债 {formatAmount(periodSummary.year.expense)}</em>
+            <EyeOutlined />
           </div>
         </div>
 
-        <div className="period-panel page-panel">
-          {periodCards.map((item) => {
-            const summary = periodSummary[item.key]
+        {periodCards.map((item) => {
+          const summary = periodSummary[item.key]
 
-            return (
-              <div className="period-row" key={item.key}>
+          return (
+            <div className="overview-period" key={item.key}>
+              <div className="overview-period-title">
                 <span className="period-icon">{item.icon}</span>
-                <div>
-                  <strong>{item.title}</strong>
-                  <em>
-                    {item.key === 'today'
-                      ? periodSummary.baseDate
-                      : item.key === 'month'
-                        ? periodSummary.monthKey
-                        : periodSummary.monthKey.slice(0, 4)}
-                  </em>
-                </div>
-                <div className="period-amounts">
-                  <span>
-                    总收入 <b className="income">{formatAmount(summary.income)}</b>
-                  </span>
-                  <span>
-                    总支出 <b className="expense">{formatAmount(summary.expense)}</b>
-                  </span>
-                </div>
+                <strong>{item.title}</strong>
+                <em>
+                  {item.key === 'today'
+                    ? periodSummary.baseDate
+                    : item.key === 'month'
+                      ? periodSummary.monthKey
+                      : periodSummary.monthKey.slice(0, 4)}
+                </em>
               </div>
-            )
-          })}
-        </div>
+              <div className="period-amounts">
+                <span>
+                  总收入 <b className="income">{formatAmount(summary.income)}</b>
+                </span>
+                <span>
+                  总支出 <b className="expense">{formatAmount(summary.expense)}</b>
+                </span>
+              </div>
+            </div>
+          )
+        })}
       </section>
 
       <section className="home-main-grid">
@@ -305,21 +256,6 @@ const Home = ({
           </div>
         </div>
       </section>
-
-      <section className="home-quick-grid">
-        {visibleQuickLinks.map((item) => (
-          <Link
-            className="home-quick-item page-panel"
-            key={item.link}
-            to={item.link}
-          >
-            <span className="home-quick-icon">{item.icon}</span>
-            <strong>{item.title}</strong>
-            <em>{item.desc}</em>
-          </Link>
-        ))}
-      </section>
-
     </div>
   )
 }

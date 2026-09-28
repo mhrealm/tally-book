@@ -39,7 +39,6 @@ import {
   ADMIN_ROLE_ID,
   canAccessMenuPath,
   filterMenuTreeByRole,
-  getAccessibleMenuPaths,
   getFirstAccessibleMenuPath,
   normalizeRoles,
 } from './config/roles'
@@ -71,7 +70,7 @@ const USER_KEY = 'koala-book-user'
 const ROLE_KEY = 'koala-book-role'
 const AVATAR_COLOR_KEY = 'koala-book-avatar-color'
 const AVATAR_COLORS = [
-  '#ff9a3d',
+  '#eba05e',
   '#f58220',
   '#fb7185',
   '#f59e0b',
@@ -214,10 +213,6 @@ const App = () => {
   )
   const firstAccessiblePath = React.useMemo(
     () => getFirstAccessibleMenuPath(visibleMenus),
-    [visibleMenus]
-  )
-  const accessibleMenuPaths = React.useMemo(
-    () => getAccessibleMenuPaths(visibleMenus),
     [visibleMenus]
   )
   const accessReady = Boolean(
@@ -619,7 +614,6 @@ const App = () => {
               element={renderProtectedPage(
                 '/',
                 <Home
-                  accessiblePaths={accessibleMenuPaths}
                   transactionCategoryField={transactionCategoryField}
                   users={users}
                 />
@@ -731,7 +725,12 @@ root.render(
           colorInfo: THEME_COLOR,
           colorLink: THEME_COLOR,
           colorPrimary: THEME_COLOR,
-          fontSize: 13,
+          colorText: '#222226',
+          colorTextSecondary: '#575757',
+          colorBorder: '#e0e1ed',
+          colorBorderSecondary: '#f1f1f1',
+          borderRadius: 6,
+          fontSize: 14,
           fontSizeHeading1: 22,
           fontSizeHeading2: 18,
           fontSizeHeading3: 16,

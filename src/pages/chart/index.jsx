@@ -19,7 +19,7 @@ import './index.less'
 
 const reportTabs = ['基础统计', '分类', '账户', '成员', '项目', '商家']
 const defaultMonth = '2025-09'
-const chartColors = ['#ff9a3d', '#f58220', '#64c6c6', '#819cff', '#fb7185']
+const chartColors = ['#eba05e', '#f58220', '#64c6c6', '#819cff', '#fb7185']
 
 const getCategoryLabelGetter = (transactionCategoryField) => {
   const options = Array.isArray(transactionCategoryField?.options)
@@ -157,7 +157,7 @@ const Chart = ({ transactionCategoryField }) => {
       height: 310,
       scale: {
         color: {
-          range: ['#ef5b3f', '#64c6c6'],
+          range: ['#ea522d', '#2e869a'],
         },
       },
       smooth: true,

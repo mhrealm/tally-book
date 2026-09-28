@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { DownloadOutlined } from '@ant-design/icons'
-import { Button, DatePicker, Form, Input, Select } from 'antd'
+import { DatePicker, Form, Input, Select } from 'antd'
 
 const { RangePicker } = DatePicker
 const SEARCH_DELAY = 300
@@ -9,7 +8,6 @@ const TransactionSearchForm = ({
   categoryOptions,
   dateFormat,
   form,
-  onExport,
   onSearch,
   typeOptions,
 }) => {
@@ -90,18 +88,6 @@ const TransactionSearchForm = ({
         name="describe"
       >
         <Input allowClear placeholder="请输入描述" />
-      </Form.Item>
-
-      <Form.Item className="search-form-actions">
-        <Button
-          className="transaction-export-button"
-          htmlType="button"
-          icon={<DownloadOutlined />}
-          onClick={onExport}
-          type="text"
-        >
-          导出
-        </Button>
       </Form.Item>
     </Form>
   )
