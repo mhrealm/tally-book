@@ -38,8 +38,11 @@ const RecordDrawer = ({
   } = useTransactionCategories(transactionCategoryField, transactionType)
 
   const resetForm = React.useCallback(
-    (nextEntryMode = 'single', nextBatchMode = 'severalDaysBatch') => {
-      const type = transactionTypeField.defaultValue
+    (nextEntryMode = 'single', nextBatchMode = 'severalDaysBatch', keepState = false) => {
+      const type = keepState
+        ? form.getFieldValue('type') || transactionTypeField.defaultValue
+        : transactionTypeField.defaultValue
+      const year = keepState ? form.getFieldValue('year') || dayjs() : dayjs()
       const mode = nextEntryMode === 'single' ? 'single' : nextBatchMode
 
       form.resetFields()
@@ -52,7 +55,7 @@ const RecordDrawer = ({
         project: '',
         merchant: '',
         type,
-        year: dayjs(),
+        year,
       })
     },
     [form, getDefaultCategoryValue],
@@ -137,7 +140,7 @@ const RecordDrawer = ({
       }
 
       if (keepOpen) {
-        resetForm(entryMode, batchMode)
+        resetForm(entryMode, batchMode, true)
       } else {
         onClose?.()
       }
