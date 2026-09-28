@@ -1,34 +1,75 @@
-import { Button, Popconfirm, Space, Switch, Table, Tag } from 'antd'
+import React from 'react'
+import { Button, Popconfirm, Space, Switch, Table, Tag, Tooltip } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { getCategoryIconUrl } from '../../common/category-icons'
 
-const renderCategoryName = (value, record) => (
-  <div className="category-name-cell">
-    <span className="category-icon">
-      {String(value || record.value).slice(0, 1)}
-    </span>
-    <div>
-      <strong>{value}</strong>
-      <span>{record.value}</span>
+const renderCategoryName = (value, record) => {
+  const iconUrl = getCategoryIconUrl(record.value)
+
+  return (
+    <div className="category-name-cell">
+      {iconUrl ? (
+        <span
+          className="category-icon is-image"
+          style={{ backgroundImage: `url(${iconUrl})` }}
+        />
+      ) : (
+        <span className="category-icon">
+          {String(value || record.value).slice(0, 1)}
+        </span>
+      )}
+      <div>
+        <strong>{value}</strong>
+        <span>{record.value}</span>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
-const renderKeywords = (keywords = []) => (
-  <Space size={[4, 4]} wrap>
-    {keywords.length ? (
-      keywords.slice(0, 4).map((keyword) => (
-        <Tag className="keyword-tag" key={keyword}>
-          {keyword}
-        </Tag>
-      ))
-    ) : (
-      <span className="category-muted">无</span>
-    )}
-    {keywords.length > 4 && (
-      <Tag className="keyword-tag">+{keywords.length - 4}</Tag>
-    )}
-  </Space>
-)
+const KeywordsCell = ({ keywords = [] }) => {
+  const listRef = React.useRef(null)
+  const [overflow, setOverflow] = React.useState(false)
+
+  React.useLayoutEffect(() => {
+    const list = listRef.current
+
+    if (!list) {
+      return undefined
+    }
+
+    const checkOverflow = () => {
+      setOverflow(list.scrollWidth > list.clientWidth)
+    }
+    const observer = new ResizeObserver(checkOverflow)
+
+    checkOverflow()
+    observer.observe(list)
+    return () => observer.disconnect()
+  }, [keywords])
+
+  if (!keywords.length) {
+    return <span className="category-muted">无</span>
+  }
+
+  return (
+    <Tooltip title={overflow ? keywords.join('、') : null}>
+      <div className="keyword-cell">
+        <div
+          className={['keyword-list', overflow ? 'is-overflow' : '']
+            .filter(Boolean)
+            .join(' ')}
+          ref={listRef}
+        >
+          {keywords.map((keyword) => (
+            <Tag className="keyword-tag" key={keyword}>
+              {keyword}
+            </Tag>
+          ))}
+        </div>
+      </div>
+    </Tooltip>
+  )
+}
 
 const CategoryTable = ({
   categories,
@@ -42,6 +83,7 @@ const CategoryTable = ({
     {
       title: '分类名称',
       dataIndex: 'label',
+      width: 180,
       render: renderCategoryName,
     },
     {
@@ -55,7 +97,7 @@ const CategoryTable = ({
     {
       title: '关键词',
       dataIndex: 'keywords',
-      render: renderKeywords,
+      render: (keywords) => <KeywordsCell keywords={keywords} />,
     },
     {
       title: '默认',
