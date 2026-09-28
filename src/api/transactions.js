@@ -15,9 +15,64 @@ export const addTransactions = (data) => {
   return request.post('/transactions', data)
 }
 
-// 批量新增交易记录。
-export const batchAddTransactions = (dataList) => {
-  return request.post('/transactions/batch', dataList)
+// 单次请求体超过约 25KB 时 Vite 代理转发会被本机拦截（502），留出余量
+const BATCH_MAX_BYTES = 20 * 1024
+const encoder = new TextEncoder()
+
+const splitByBytes = (list) => {
+  const chunks = []
+  let current = []
+  let size = 2
+
+  for (const item of list) {
+    const itemSize = encoder.encode(JSON.stringify(item)).length + 1
+
+    if (current.length && size + itemSize > BATCH_MAX_BYTES) {
+      chunks.push(current)
+      current = []
+      size = 2
+    }
+
+    current.push(item)
+    size += itemSize
+  }
+
+  if (current.length) {
+    chunks.push(current)
+  }
+
+  return chunks
+}
+
+// 批量新增交易记录，按请求体大小分批顺序提交，遇到失败即停止并返回已保存部分。
+export const batchAddTransactions = async (dataList) => {
+  const saved = []
+
+  for (const chunk of splitByBytes(dataList)) {
+    let res
+
+    try {
+      res = await request.post('/transactions/batch', chunk)
+    } catch (error) {
+      res = { msg: error?.response?.data?.msg || error?.message }
+    }
+
+    if (res?.code !== 200) {
+      const failedMsg = res?.msg || '批量保存失败'
+
+      return {
+        code: res?.code ?? 500,
+        msg: saved.length
+          ? `已保存 ${saved.length} 条，剩余 ${dataList.length - saved.length} 条保存失败：${failedMsg}`
+          : failedMsg,
+        data: saved,
+      }
+    }
+
+    saved.push(...(res.data || chunk))
+  }
+
+  return { code: 200, msg: '批量添加交易成功', data: saved }
 }
 
 // 根据交易 ID 更新交易记录。

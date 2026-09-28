@@ -126,10 +126,13 @@ const RecordDrawer = ({
           return
         }
 
-        const { code, msg } = await batchAddTransactions(nextItems)
+        const { code, msg, data } = await batchAddTransactions(nextItems)
 
         if (code !== 200) {
-          throw new Error(msg || '批量保存失败')
+          if (data.length && onSaved) {
+            await onSaved()
+          }
+          throw new Error(msg)
         }
       }
 

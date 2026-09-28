@@ -257,7 +257,10 @@ const Transactions = ({ transactionCategoryField }) => {
 
         const res = await batchAddTransactions(params);
 
-        if (res.code === 200) {
+        if (res.code !== 200) {
+          message.error(res.msg);
+        }
+        if (res.data.length) {
           await fetchTransactions(searchParams); // 刷新列表
         }
       }

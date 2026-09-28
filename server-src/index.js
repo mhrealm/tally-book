@@ -14,7 +14,9 @@ const middlewares = jsonServer.defaults()
 
 // 启用基础中间件（CORS、JSON解析等）
 server.use(middlewares)
-server.use(jsonServer.bodyParser)
+// 覆盖默认的 body-parser，将请求体上限提高到 50mb，防止大批量提交被截断
+server.use(require('express').json({ limit: '50mb' }))
+server.use(require('express').urlencoded({ extended: true, limit: '50mb' }))
 
 // 配置业务路由
 setupMenuRoutes(server)
